@@ -1,19 +1,11 @@
-import HomePage from './HomePage';
-// import { WidgetOptions } from './index.widget';
+import TrendingBooks from './components/TrendingBooks/TrendingBooks';
 
-// interface AppProps {
-//   options?: WidgetOptions;
-// }
-
-function App(
-  // { options }: AppProps
-) {
+function App() {
   return (
-    <div>
-      {/* <h1 className="text-3xl font-bold underline">
-        Hello world! {options?.name}
-      </h1> */}
-      <HomePage />
+    <div className="px-6 py-6">
+      <div className="mx-auto max-w-5xl">
+        <TrendingBooks />
+      </div>
     </div>
   )
 }
