@@ -22,7 +22,13 @@ const TrendingBooks: React.FC<TrendingBooksProps> = ({
         e.stopPropagation();
         setFavorites((prev) => {
             const next = new Set(prev);
-            next.has(book.id) ? next.delete(book.id) : next.add(book.id);
+
+            if (next.has(book.id)) {
+                next.delete(book.id);
+            } else {
+                next.add(book.id);
+            }
+
             return next;
         });
         onToggleFavorite?.(book);
