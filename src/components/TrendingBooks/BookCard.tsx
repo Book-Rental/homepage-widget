@@ -1,15 +1,15 @@
-import { Image, Rb_Label, Rb_Rating } from 'rentbook-ui-lib';
+import { Rb_Image, Rb_Label, Rb_Rating } from 'rentbook-ui-lib';
 import { Book } from '../../types';
 
 interface Props {
-    book: Book;
+  book: Book;
 }
 
 const BookCard = ({ book }: Props) => {
   return (
     <div className="w-[150px] flex-shrink-0 cursor-pointer ml-8">
 
-      <Image
+      <Rb_Image
         src={book.coverUrl}
         alt={book.title}
         className="w-full h-[210px] rounded-lg object-cover"
@@ -36,10 +36,10 @@ const BookCard = ({ book }: Props) => {
       </div>
 
       <div className="mt-2 text-sm font-semibold text-gray-900">
-                ₹{book.rentalPrice}
+        ₹{book.rentalPrice}
 
         <span className="ml-1 font-normal text-gray-500">
-                    / {book.rentalDays} days
+          / {book.rentalDays} days
         </span>
       </div>
 
