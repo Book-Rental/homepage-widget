@@ -1,3 +1,5 @@
+import { IconType } from "react-icons";
+
 export interface Book {
     id: string;
     title: string;
@@ -12,7 +14,7 @@ export interface Book {
 export interface Category {
     id: string;
     name: string;
-    icon: string; // emoji or icon key, swap for an icon component if you have a set
+    icon: IconType;
     bookCount: number;
     accent: string; // CSS color used for the icon chip background
 }
