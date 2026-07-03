@@ -1,20 +1,5 @@
-import { Book, Category } from './types';
-import {
-  FaBook,
-  FaLaptopCode,
-  FaBriefcase,
-  FaHandsHelping,
-  FaLandmark,
-  FaFlask,
-} from 'react-icons/fa';
-export const categories: Category[] = [
-  { id: 'fiction', name: 'Fiction', icon: FaBook, bookCount: 1200, accent: '#EDEAFB' },
-  { id: 'programming', name: 'Programming', icon: FaLaptopCode, bookCount: 850, accent: '#E8F1FE' },
-  { id: 'business', name: 'Business', icon: FaBriefcase, bookCount: 560, accent: '#FFF1E0' },
-  { id: 'self-help', name: 'Self Help', icon: FaHandsHelping, bookCount: 500, accent: '#E6F7EC' },
-  { id: 'history', name: 'History', icon: FaLandmark, bookCount: 400, accent: '#EAF0FB' },
-  { id: 'science', name: 'Science', icon: FaFlask, bookCount: 300, accent: '#EAF6FB' },
-];
+import { Book } from './types/category';
+
 export const trendingBooks: Book[] = [
   {
     id: '1',
