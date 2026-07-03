@@ -7,6 +7,7 @@ export interface Book {
     rentalPrice: number;
     rentalDays: number;
     isFavorite?: boolean;
+    isPopular: boolean;
 }
 
 export interface Category {
