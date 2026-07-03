@@ -44,7 +44,7 @@ const TrendingBooks = () => {
           {(error as Error).message}
         </div>
       ) : (
-        <div className="flex gap-5 overflow-x-auto pb-2 scrollbar-hide">
+        <div className="flex gap-5 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {trendingBooks.length > 0 ? (
             trendingBooks.map((book) => (
               <BookCard
