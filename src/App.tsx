@@ -1,24 +1,17 @@
-import TrendingBooks from './components/TrendingBooks/TrendingBooks';
 
-import "swiper/css";
-import "swiper/css/pagination";
-import PopularCategoriesContainer from './components/PopularCategoriesContainer';
-import BookCarousel from './components/Carousel';
+import 'swiper/css';
+import 'swiper/css/pagination';
 
+import HomePage from './pages/HomePage';
 
 function App(
 ) {
   return (
-    <div className="mx-auto ">
+    <div>
+      <HomePage />
 
-      < BookCarousel />
-      <PopularCategoriesContainer />
-      <div className="px-6 py-6">
-        <div className="mx-auto max-w-5xl">
-          <TrendingBooks />
-        </div>
-      </div>
-    </div >
+    </div>
+
   )
 }
 

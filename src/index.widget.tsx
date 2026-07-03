@@ -4,25 +4,18 @@ import App from './App';
 import './index.css'
 
 export interface WidgetOptions {
-    containerElementId: string,
-    name: string;
+  containerElementId: string,
+  name: string;
 }
 declare global {
-    interface Window {
-        renderReactWidget: (config: string) => void;
-        unmountReactWidget: (id: string) => void;
-    }
+  interface Window {
+    renderReactWidget: (config: string) => void;
+    unmountReactWidget: (id: string) => void;
+  }
 }
 
 const widgetRoots: Record<string, ReactRoot> = {};
 
-// function Root(
-//     // { options }: { options: WidgetOptions }
-// ) {
-//     return <App
-//     // options={options}
-//     />;
-// }
 
 const getOptionsFromDataAttributes = (
   el: HTMLElement
@@ -66,7 +59,6 @@ window.renderReactWidget = (config: string) => {
   const root = createRoot(container);
   root.render(
     <React.StrictMode>
-      {/* <Root options={finalOptions} /> */}
       <App />
     </React.StrictMode>
   )

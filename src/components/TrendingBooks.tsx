@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Book } from '../types';
+import { Book } from '../types/category';
 
 interface TrendingBooksProps {
-    books: Book[];
-    onBookClick?: (book: Book) => void;
-    onViewAllClick?: () => void;
-    onToggleFavorite?: (book: Book) => void;
+  books: Book[];
+  onBookClick?: (book: Book) => void;
+  onViewAllClick?: () => void;
+  onToggleFavorite?: (book: Book) => void;
 }
 
 const TrendingBooks: React.FC<TrendingBooksProps> = ({
@@ -42,7 +42,7 @@ const TrendingBooks: React.FC<TrendingBooksProps> = ({
           onClick={onViewAllClick}
           className="p-1 text-sm font-semibold text-[#e2543d] hover:underline"
         >
-                    View all
+          View all
         </button>
       </div>
 
@@ -72,7 +72,7 @@ const TrendingBooks: React.FC<TrendingBooksProps> = ({
                   className={`absolute right-2.5 top-2.5 flex h-[30px] w-[30px] items-center justify-center rounded-full bg-white/90 text-sm transition-all hover:scale-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e2543d] ${isFavorite ? 'text-[#e2543d]' : 'text-[#5b5470]'
                   }`}
                 >
-                                    ♥
+                  ♥
                 </button>
               </div>
 
@@ -83,12 +83,12 @@ const TrendingBooks: React.FC<TrendingBooksProps> = ({
 
               <div className="mx-3.5 mb-3.5 mt-3 flex items-center justify-between">
                 <span className="text-xs font-semibold text-[#d99a2b]">
-                                    ★ {book.rating.toFixed(1)}
+                  ★ {book.rating.toFixed(1)}
                 </span>
                 <span className="text-[13px] font-bold text-[#1b1530]">
-                                    ₹{book.rentalPrice}{' '}
+                  ₹{book.rentalPrice}{' '}
                   <span className="text-[11px] font-medium text-[#5b5470]">
-                                        / {book.rentalDays} days
+                    / {book.rentalDays} days
                   </span>
                 </span>
               </div>

@@ -1,5 +1,5 @@
 import { Rb_Image, Rb_Label, Rb_Rating } from 'rentbook-ui-lib';
-import { Book } from '../../types';
+import { Book } from '../../types/category';
 
 interface Props {
   book: Book;
