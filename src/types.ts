@@ -4,7 +4,7 @@ export interface Book {
     author: string;
     coverUrl: string;
     rating: number;
-    rentalPrice: number;
+    rentalPrice: string;
     rentalDays: number;
     isFavorite?: boolean;
     isPopular: boolean;
