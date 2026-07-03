@@ -1,14 +1,12 @@
 
-import React from "react";
-import { Book, Category } from "./types";
-import PopularCategories from "./components/PopularCategories";
-import TrendingBooks from "./components/TrendingBooks";
-import { categories, trendingBooks } from "./Data";
+import React from 'react';
+import { Book, Category } from './types';
+import PopularCategories from './components/PopularCategories';
+import TrendingBooks from './components/TrendingBooks';
+import { categories, trendingBooks } from './Data';
 
 const HomePage: React.FC = () => {
-  const handleBrowseClick = () => {
-    console.log('Navigate to /browse');
-  };
+
 
   const handleCategoryClick = (category: Category) => {
     console.log('Navigate to /category/' + category.id);
@@ -19,7 +17,7 @@ const HomePage: React.FC = () => {
   };
 
   return (
-    <main style={{ maxWidth: 1200, margin: "0 auto", padding: "24px" }}>
+    <main style={{ maxWidth: 1200, margin: '0 auto', padding: '24px' }}>
 
       <PopularCategories
         categories={categories}

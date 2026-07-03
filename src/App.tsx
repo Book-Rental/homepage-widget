@@ -1,7 +1,7 @@
 import TrendingBooks from './components/TrendingBooks/TrendingBooks';
 
-import "swiper/css";
-import "swiper/css/pagination";
+import 'swiper/css';
+import 'swiper/css/pagination';
 import PopularCategoriesContainer from './components/PopularCategoriesContainer';
 import BookCarousel from './components/Carousel';
 
