@@ -70,7 +70,7 @@ const TrendingBooks: React.FC<TrendingBooksProps> = ({
                       : `Add ${book.title} to favorites`
                   }
                   className={`absolute right-2.5 top-2.5 flex h-[30px] w-[30px] items-center justify-center rounded-full bg-white/90 text-sm transition-all hover:scale-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e2543d] ${isFavorite ? 'text-[#e2543d]' : 'text-[#5b5470]'
-                    }`}
+                  }`}
                 >
                   ♥
                 </button>
