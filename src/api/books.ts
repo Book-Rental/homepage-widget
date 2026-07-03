@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Book } from '../types';
+import { Book } from '../types/category';
 
 const BASE_URL = 'https://be-book-rental.onrender.com';
 
@@ -8,7 +8,7 @@ interface ApiBook {
     name: string;
     author: string;
     coverImage: string;
-    rentalPricePerDay: number;
+    rentalPricePerDay: string;
     isPopular: boolean;
 }
 
