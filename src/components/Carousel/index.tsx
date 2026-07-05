@@ -4,7 +4,7 @@ import bookImage2 from '../../assets/jarmoluk-old-books-436498_1920.jpg';
 import bookImage3 from '../../assets/josealbafotos-leaves-1076307_1920.jpg';
 import { Carousel } from 'rentbook-ui-lib';
 import type { CarouselSlide } from 'rentbook-ui-lib';
-import { useNavigate } from 'react-router-dom';
+
 const slides: CarouselSlide[] = [
   {
     id: 1,
@@ -27,7 +27,6 @@ const slides: CarouselSlide[] = [
 ];
 
 const BookCarousel: React.FC = () => {
-  const navigate = useNavigate();
 
   return (
     <Carousel
@@ -38,7 +37,10 @@ const BookCarousel: React.FC = () => {
       showNavigation
       showPagination
       onSlideClick={(slide) => console.log(slide)}
-      onButtonClick={() => navigate('/books')}
+      onButtonClick={() => {
+        window.history.pushState({}, "", "/books")
+        window.dispatchEvent(new PopStateEvent("popstate"));
+      }}
     />
   );
 };
