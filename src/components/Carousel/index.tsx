@@ -38,8 +38,8 @@ const BookCarousel: React.FC = () => {
       showPagination
       onSlideClick={(slide) => console.log(slide)}
       onButtonClick={() => {
-        window.history.pushState({}, "", "/books")
-        window.dispatchEvent(new PopStateEvent("popstate"));
+        window.history.pushState({}, '', '/books')
+        window.dispatchEvent(new PopStateEvent('popstate'));
       }}
     />
   );
