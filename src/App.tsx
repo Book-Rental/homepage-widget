@@ -1,6 +1,6 @@
 import 'swiper/css';
 import 'swiper/css/pagination';
-
+import 'rentbook-ui-lib/microfrontend.min.css';
 import HomePage from './pages/HomePage';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import 'rentbook-ui-lib/microfrontend.min.css'
