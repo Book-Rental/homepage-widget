@@ -6,11 +6,11 @@ import TrendingBooks from '../components/TrendingBooks/TrendingBooks';
 const HomePage: React.FC = () => {
 
   return (
-    <main className="w-full ">
+    <section>
       < BookCarousel />
       <PopularCategoriesContainer />
       <TrendingBooks />
-    </main>
+    </section>
   );
 };
 
