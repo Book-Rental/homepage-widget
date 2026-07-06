@@ -1,18 +1,19 @@
-
 import 'swiper/css';
 import 'swiper/css/pagination';
 
 import HomePage from './pages/HomePage';
+import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 
-function App(
-) {
+const queryClient = new QueryClient();
+
+function App() {
   return (
     <div>
-      <HomePage />
-
+      <QueryClientProvider client={queryClient}>
+        <HomePage />
+      </QueryClientProvider>
     </div>
-
-  )
+  );
 }
 
 export default App;
