@@ -1,11 +1,11 @@
 import React from 'react';
 import { Category } from '../../types/category';
-import { Rb_Button, Rb_Icon } from 'rentbook-ui-lib';
+import { Rb_Button, Rb_Icon, Rb_Text } from 'rentbook-ui-lib';
 
 interface PopularCategoriesProps {
-    categories: Category[];
-    onCategoryClick?: (category: Category) => void;
-    onViewAllClick?: () => void;
+  categories: Category[];
+  onCategoryClick?: (category: Category) => void;
+  onViewAllClick?: () => void;
 }
 
 const PopularCategories: React.FC<PopularCategoriesProps> = ({
@@ -14,19 +14,22 @@ const PopularCategories: React.FC<PopularCategoriesProps> = ({
   onViewAllClick,
 }) => {
   return (
-    <section className="mx-auto mt-10 mb-10 max-w-7xl px-4">
+    <section className="mx-auto mt-10 mb-10 w-full px-4">
 
       <div className="mb-5 flex items-center justify-between">
-        <h2 className="text-3xl font-bold text-[#1b1530]">
-                    Popular Categories
-        </h2>
+        <Rb_Text
+          variant="h2"
+          className="font-bold text-[#1b1530]"
+        >
+          Popular Categories
+        </Rb_Text>
 
         <Rb_Button
           variant="primary"
           onClick={onViewAllClick}
           className="!bg-transparent !p-0 !text-[#4F7CF3] hover:!bg-transparent hover:underline"
         >
-                    View all
+          View all
         </Rb_Button>
       </div>
 
@@ -70,7 +73,6 @@ const PopularCategories: React.FC<PopularCategoriesProps> = ({
               <p className="text-[15px] font-semibold text-[#1B1530] capitalize">
                 {category.name}
               </p>
-
 
             </div>
           </Rb_Button>
