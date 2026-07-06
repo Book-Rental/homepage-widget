@@ -5,17 +5,11 @@ import TrendingBooks from '../components/TrendingBooks/TrendingBooks';
 
 const HomePage: React.FC = () => {
 
-  // const handleBookClick = (book: Book) => {
-  //   console.log('Navigate to /book/' + book.id);
-  // };
-
   return (
-    <main className="mx-auto ">
+    <main className="w-full ">
       < BookCarousel />
-
       <PopularCategoriesContainer />
-
-      <TrendingBooks/>
+      <TrendingBooks />
     </main>
   );
 };
