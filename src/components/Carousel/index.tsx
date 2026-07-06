@@ -31,8 +31,8 @@ const BookCarousel: React.FC = () => {
   return (
     <Carousel
       slides={slides}
-      width='95%'
-      height='500px'
+      widthClassName='w-full'
+      heightClassName='h-[500px]'
       autoPlay
       showNavigation
       showPagination
