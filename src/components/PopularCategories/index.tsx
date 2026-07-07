@@ -14,33 +14,33 @@ const PopularCategories: React.FC<PopularCategoriesProps> = ({
   onViewAllClick,
 }) => {
   return (
-    <section className="mx-auto mt-10 mb-10 w-full px-4">
+    <section className="w-full">
+      <div className='mx-10 my-10'>
 
-      <div className="mb-5 flex items-center justify-between">
-        <Rb_Text
-          variant="h2"
-          className="font-bold text-[#1b1530]"
-        >
-          Popular Categories
-        </Rb_Text>
+        <div className="mb-5 flex items-center justify-between">
+          <Rb_Text
+            variant="h2"
+            className="font-bold text-[#1b1530]"
+          >
+            Popular Categories
+          </Rb_Text>
 
-        <Rb_Button
-          variant="primary"
-          onClick={onViewAllClick}
-          className="!bg-transparent !p-0 !text-[#4F7CF3] hover:!bg-transparent hover:underline"
-        >
-          View all
-        </Rb_Button>
-      </div>
-
-      <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-6">
-        {categories.map((category) => (
           <Rb_Button
-            key={category.id}
             variant="primary"
-            onClick={() => onCategoryClick?.(category)}
-            className="
-              group
+            onClick={onViewAllClick}
+            className="!bg-transparent !p-0 !text-[#4F7CF3] hover:!bg-transparent hover:underline"
+          >
+            View all
+          </Rb_Button>
+        </div>
+
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-6">
+          {categories.map((category) => (
+            <Rb_Button
+              key={category.id}
+              variant="primary"
+              onClick={() => onCategoryClick?.(category)}
+              className="
               h-40
               !bg-white
               !border
@@ -57,27 +57,29 @@ const PopularCategories: React.FC<PopularCategoriesProps> = ({
               hover:shadow-md
               hover:-translate-y-1
             "
-          >
-            <div
-              className="flex h-14 w-14 items-center justify-center rounded-full"
-              style={{ backgroundColor: category.accent }}
             >
-              <Rb_Icon
-                icon={category.icon}
-                size={24}
-                color="#316BFF"
-              />
-            </div>
+              <div
+                className="flex h-14 w-14 items-center justify-center rounded-full"
+                style={{ backgroundColor: category.accent }}
+              >
+                <Rb_Icon
+                  icon={category.icon}
+                  size={24}
+                  color="#316BFF"
+                />
+              </div>
 
-            <div className="text-center">
-              <p className="text-[15px] font-semibold text-[#1B1530] capitalize">
-                {category.name}
-              </p>
+              <div className="text-center">
+                <p className="text-[15px] font-semibold text-[#1B1530] capitalize">
+                  {category.name}
+                </p>
 
-            </div>
-          </Rb_Button>
-        ))}
+              </div>
+            </Rb_Button>
+          ))}
+        </div>
       </div>
+
     </section>
   );
 };
