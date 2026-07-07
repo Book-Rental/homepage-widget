@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { usePopularCategories } from '../../hooks/useCategories';
 import PopularCategories from '../PopularCategories';
+import { Category } from '../../types/category';
+import { slugify } from '../../utils/slugify';
 
 
 const PopularCategoriesContainer: React.FC = () => {
@@ -12,6 +14,15 @@ const PopularCategoriesContainer: React.FC = () => {
     });
     window.dispatchEvent(event);
   }, [isLoading]);
+
+  const handleCategoryClick = (category: Category) => {
+    window.history.pushState({}, '', `/books?categories=${slugify(category.name)}`);
+    window.dispatchEvent(new PopStateEvent('popstate'));
+  }
+  const handleViewAllClick = () => {
+    window.history.pushState({}, '', '/books?isPopular=true')
+    window.dispatchEvent(new PopStateEvent('popstate'));
+  }
 
   if (isLoading) {
     return <p className="text-center py-6 text-[#5b6b78]">Loading categories...</p>;
@@ -33,7 +44,9 @@ const PopularCategoriesContainer: React.FC = () => {
     );
   }
 
-  return <PopularCategories categories={categories} />;
+  return <PopularCategories categories={categories}
+    onCategoryClick={handleCategoryClick}
+    onViewAllClick={handleViewAllClick} />;
 };
 
 export default PopularCategoriesContainer;
