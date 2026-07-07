@@ -4,6 +4,7 @@ import PopularCategories from '../PopularCategories';
 import { Category } from '../../types/category';
 import { slugify } from '../../utils/slugify';
 
+const MAX_VISIBLE_CATEGORIES = 6;
 
 const PopularCategoriesContainer: React.FC = () => {
   const { data: categories = [], isLoading, isError } = usePopularCategories();
@@ -43,8 +44,9 @@ const PopularCategoriesContainer: React.FC = () => {
       </p>
     );
   }
+  const visibleCategories = categories.slice(0, MAX_VISIBLE_CATEGORIES);
 
-  return <PopularCategories categories={categories}
+  return <PopularCategories categories={visibleCategories}
     onCategoryClick={handleCategoryClick}
     onViewAllClick={handleViewAllClick} />;
 };
