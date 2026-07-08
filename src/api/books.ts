@@ -1,7 +1,6 @@
 import axios from 'axios';
+import { ENDPOINTS } from './api';
 import { Book } from '../types/category';
-
-const BASE_URL = 'https://be-book-rental.onrender.com';
 
 interface ApiBook {
     _id: string;
@@ -20,7 +19,7 @@ interface BooksResponse {
 }
 
 export const fetchBooks = async (): Promise<Book[]> => {
-  const { data } = await axios.get<BooksResponse>(`${BASE_URL}/api/book`);
+  const { data } = await axios.get<BooksResponse>(ENDPOINTS.books);
 
   if (data.status !== 'Success') {
     throw new Error('Failed to fetch books');
