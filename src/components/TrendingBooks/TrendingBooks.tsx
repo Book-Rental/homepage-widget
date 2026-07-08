@@ -12,7 +12,7 @@ const TrendingBooks = () => {
   } = useQuery({
     queryKey: bookKeys.all,
     queryFn: fetchBooks,
-    select: (books) => books.filter((book) => book.isPopular).slice(0, 5),
+    select: (books) => books.filter((book) => book.isPopular),
     staleTime: 1000 * 60 * 5,
     retry: 2,
     refetchOnWindowFocus: false,
@@ -20,50 +20,52 @@ const TrendingBooks = () => {
 
   return (
     <section className="mt-8 w-full">
-      <div className="mb-5 flex w-full items-center justify-between">
-        <Rb_Label className="text-xl font-bold text-gray-900">
-          Trending Books
-        </Rb_Label>
+      <div className='mx-10 my-10'>
+        <div className="mb-5 flex w-full items-center justify-between">
+          <Rb_Label className="text-xl font-bold text-gray-900">
+            Trending Books
+          </Rb_Label>
 
-        <Rb_Anchor>
-          View all
-        </Rb_Anchor>
-      </div>
+          <Rb_Anchor>
+            View all
+          </Rb_Anchor>
+        </div>
 
-      {isLoading ? (
-        <div className="py-6 text-center text-gray-500">
-          Loading trending books...
-        </div>
-      ) : isError ? (
-        <div className="py-6 text-center text-red-500">
-          {(error as Error).message}
-        </div>
-      ) : (
-        <div className="flex w-full gap-5 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          {trendingBooks.length > 0 ? (
-            trendingBooks.map((book) => (
-              <div key={book.id}>
-                <ProductCard
-                  imageUrl={book.coverUrl}
-                  title={book.title}
-                  author={book.author}
-                  rating={book.rating}
-                  priceText={`₹${book.rentalPrice}/day`}
-                >
-                  <Rb_Button
-                    className="primary"
-                    onClick={() => console.log('Add to cart:', book.id)}
+        {isLoading ? (
+          <div className="py-6 text-center text-gray-500">
+            Loading trending books...
+          </div>
+        ) : isError ? (
+          <div className="py-6 text-center text-red-500">
+            {(error as Error).message}
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
+            {trendingBooks.length > 0 ? (
+              trendingBooks.map((book) => (
+                <div key={book.id}>
+                  <ProductCard
+                    imageUrl={book.coverUrl}
+                    title={book.title}
+                    author={book.author}
+                    rating={book.rating}
+                    priceText={`₹${book.rentalPrice}/day`}
                   >
-                    Add to Cart
-                  </Rb_Button>
-                </ProductCard>
-              </div>
-            ))
-          ) : (
-            <p className="text-gray-500">No trending books found.</p>
-          )}
-        </div>
-      )}
+                    <Rb_Button
+                      className="primary"
+                      onClick={() => console.log('Add to cart:', book.id)}
+                    >
+                      Add to Cart
+                    </Rb_Button>
+                  </ProductCard>
+                </div>
+              ))
+            ) : (
+              <p className="text-gray-500">No trending books found.</p>
+            )}
+          </div>
+        )}
+      </div>
     </section>
   );
 };
