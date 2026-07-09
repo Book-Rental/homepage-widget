@@ -44,4 +44,10 @@ jobs:
       # - name: Build Storybook Static Site
       #   run: npm run build-storybook
 
+      - name: Trigger Render Deployment
+        if: github.event_name == 'push' && success()
+        run: |
+          curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK_URL }}"
+
+
     
