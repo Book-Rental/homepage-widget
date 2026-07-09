@@ -24,7 +24,7 @@ const TrendingBooks = () => {
   };
 
   const handleBookClick = (bookId: string) => {
-    window.history.pushState({}, '', `/books?bookId=${bookId}`);
+    window.history.pushState({}, '', `/books-details?bookId=${bookId}`);
     window.dispatchEvent(new PopStateEvent('popstate'));
   };
 
