@@ -1,6 +1,6 @@
 import React from 'react';
 import { Category } from '../../types/category';
-import { Rb_Button, Rb_Icon, Rb_Text } from 'rentbook-ui-lib';
+import { Rb_Button, Rb_Icon, Rb_Text } from '@rentbook/rentbook-ui-lib';
 
 interface PopularCategoriesProps {
   categories: Category[];

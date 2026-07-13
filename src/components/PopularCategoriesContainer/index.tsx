@@ -3,6 +3,7 @@ import { usePopularCategories } from '../../hooks/useCategories';
 import PopularCategories from '../PopularCategories';
 import { Category } from '../../types/category';
 import { slugify } from '../../utils/slugify';
+import { Rb_LoadingSpinner } from '@rentbook/rentbook-ui-lib';
 
 const MAX_VISIBLE_CATEGORIES = 6;
 
@@ -21,14 +22,13 @@ const PopularCategoriesContainer: React.FC = () => {
     window.dispatchEvent(new PopStateEvent('popstate'));
   }
   const handleViewAllClick = () => {
-    window.history.pushState({}, '', '/books?isPopular=true')
+    window.history.pushState({}, '', '/categories?isPopular=true')
     window.dispatchEvent(new PopStateEvent('popstate'));
   }
 
   if (isLoading) {
-    return <p className="text-center py-6 text-[#5b6b78]">Loading categories...</p>;
+    return <Rb_LoadingSpinner text="Loading categories..." />;
   }
-
   if (isError) {
     return (
       <p className="text-center py-6 text-red-500">

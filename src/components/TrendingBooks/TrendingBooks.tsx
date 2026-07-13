@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import { ProductCard, Rb_Button, Rb_Text } from 'rentbook-ui-lib';
 import { fetchBooks } from '../../api/books';
 import { bookKeys } from '../../api/queryKeys';
+import { ProductCard, Rb_Button, Rb_Text } from '@rentbook/rentbook-ui-lib';
 
 const TrendingBooks = () => {
   const {
