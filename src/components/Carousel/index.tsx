@@ -2,8 +2,8 @@ import React from 'react';
 import bookImage1 from '../../assets/dariuszsankowski-glasses-1052023_1920.jpg';
 import bookImage2 from '../../assets/jarmoluk-old-books-436498_1920.jpg';
 import bookImage3 from '../../assets/josealbafotos-leaves-1076307_1920.jpg';
-import { Carousel } from 'rentbook-ui-lib';
-import type { CarouselSlide } from 'rentbook-ui-lib';
+import { Carousel, CarouselSlide } from '@rentbook/rentbook-ui-lib';
+
 
 const slides: CarouselSlide[] = [
   {
