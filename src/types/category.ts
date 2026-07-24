@@ -26,6 +26,8 @@ export interface Book {
     coverUrl: string;
     rating: number;
     rentalPrice: string;
+    rentalPricePerWeek: number;
+    rentalPricePerMonth: number;
     rentalDays: number;
     isFavorite?: boolean;
     isPopular: boolean;
