@@ -1,9 +1,20 @@
+import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { fetchBooks } from '../../api/books';
 import { bookKeys } from '../../api/queryKeys';
 import { ProductCard, Rb_Button, Rb_Text } from '@rentbook/rentbook-ui-lib';
+import AddToCartModal from './AddToCartModal';
+import { addToCart } from '../../services/cartService';
+import { AddToCartPayload } from '../../types/cart';
+import { showToast } from '../../utils/toast';
+import { Book } from '../../types/category';
 
 const TrendingBooks = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedBook, setSelectedBook] = useState<Book | null>(null);
+  const [isAddingToCart, setIsAddingToCart] = useState(false);
+  const [addedType, setAddedType] = useState<'rent' | 'purchase' | null>(null);
+
   const {
     data: trendingBooks = [],
     isLoading,
@@ -28,9 +39,31 @@ const TrendingBooks = () => {
     window.dispatchEvent(new PopStateEvent('popstate'));
   };
 
-  const handleAddToCart = (bookId: string) => {
-    // TODO: Integrate with cart functionality when available.
-    console.log('Add to cart:', bookId);
+  const handleAddToCartClick = (book: Book) => {
+    if (addedType || isAddingToCart) {
+      return;
+    }
+    setSelectedBook(book);
+    setIsModalOpen(true);
+  };
+
+  const handleProceed = async (payload: AddToCartPayload) => {
+    setIsAddingToCart(true);
+
+    try {
+      await addToCart(payload);
+      showToast('Book added to rental cart.', 'success');
+      setAddedType('rent');
+    } catch (error) {
+      showToast(
+        error instanceof Error
+          ? error.message
+          : 'Failed to add book to cart.',
+        'error'
+      );
+    } finally {
+      setIsAddingToCart(false);
+    }
   };
 
   return (
@@ -75,12 +108,13 @@ const TrendingBooks = () => {
                 >
                   <Rb_Button
                     className="primary"
+                    disabled={isAddingToCart}
                     onClick={(e) => {
                       e.stopPropagation();
-                      handleAddToCart(book.id);
+                      handleAddToCartClick(book);
                     }}
                   >
-                    Add to Cart
+                    {isAddingToCart ? "Adding..." : addedType ? "Go to Cart" : "Add to Cart"}
                   </Rb_Button>
                 </ProductCard>
               </div>
@@ -88,6 +122,18 @@ const TrendingBooks = () => {
           </div>
         )}
       </div>
+
+      {selectedBook && (
+        <AddToCartModal
+          isOpen={isModalOpen}
+          onClose={() => {
+            setIsModalOpen(false);
+            setSelectedBook(null);
+          }}
+          book={selectedBook}
+          onProceed={handleProceed}
+        />
+      )}
     </section>
   );
 };

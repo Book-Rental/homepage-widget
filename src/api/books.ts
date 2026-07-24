@@ -8,6 +8,8 @@ interface ApiBook {
     author: string;
     coverImage: string;
     rentalPricePerDay: string;
+    rentalPricePerWeek: number;
+    rentalPricePerMonth: number;
     isPopular: boolean;
 }
 
@@ -32,6 +34,8 @@ export const fetchBooks = async (): Promise<Book[]> => {
     coverUrl: book.coverImage,
     rating: 4.5, // Till Api provides data
     rentalPrice: book.rentalPricePerDay,
+    rentalPricePerWeek: book.rentalPricePerWeek,
+    rentalPricePerMonth: book.rentalPricePerMonth,
     rentalDays: 1,
     isFavorite: false,
     isPopular: book.isPopular,
