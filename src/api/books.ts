@@ -20,8 +20,8 @@ interface BooksResponse {
     };
 }
 
-export const fetchBooks = async (): Promise<Book[]> => {
-  const { data } = await axios.get<BooksResponse>(ENDPOINTS.books);
+export const fetchBooks = async (params?: Record<string, string>): Promise<Book[]> => {
+  const { data } = await axios.get<BooksResponse>(ENDPOINTS.books, { params });
 
   if (data.status !== 'Success') {
     throw new Error('Failed to fetch books');

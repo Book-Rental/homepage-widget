@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 import {
   Modal,
   ModalHeader,
@@ -7,9 +7,9 @@ import {
   Dropdown,
   Rb_Button,
   Rb_Radio,
-} from "@rentbook/rentbook-ui-lib";
-import { Book } from "../../types/category";
-import { AddToCartPayload } from "../../types/cart";
+} from '@rentbook/rentbook-ui-lib';
+import { Book } from '../../types/category';
+import { AddToCartPayload } from '../../types/cart';
 
 interface AddToCartModalProps {
   isOpen: boolean;
@@ -24,42 +24,42 @@ const AddToCartModal = ({
   book,
   onProceed,
 }: AddToCartModalProps) => {
-  const [selectedDuration, setSelectedDuration] = useState("");
-  const [actionType, setActionType] = useState<"rent" | "purchase" | "">("");
+  const [selectedDuration, setSelectedDuration] = useState('');
+  const [actionType, setActionType] = useState<'rent' | 'purchase' | ''>('');
   const isProceedDisabled =
-    actionType === "" ? true : actionType === "rent" ? !selectedDuration : false;
+    actionType === '' ? true : actionType === 'rent' ? !selectedDuration : false;
 
   const rentalOptions = [
     {
       label: `1 Day - ₹${Number(book.rentalPrice)}`,
-      value: "day",
+      value: 'day',
     },
     {
       label: `1 Week - ₹${book.rentalPricePerWeek}`,
-      value: "week",
+      value: 'week',
     },
     {
       label: `1 Month - ₹${book.rentalPricePerMonth}`,
-      value: "month",
+      value: 'month',
     },
   ];
 
   const handleClose = () => {
-    setActionType("");
-    setSelectedDuration("");
+    setActionType('');
+    setSelectedDuration('');
     onClose();
   };
 
   const handleProceed = async () => {
     if (!actionType || !selectedDuration) return;
-    setActionType("");
-    setSelectedDuration("");
+    setActionType('');
+    setSelectedDuration('');
     onClose();
     await onProceed({
       bookId: book.id,
       quantity: 1,
-      pricingMode: "rent",
-      rentalPeriod: selectedDuration as "day" | "week" | "month",
+      pricingMode: 'rent',
+      rentalPeriod: selectedDuration as 'day' | 'week' | 'month',
     });
   };
 
@@ -76,11 +76,11 @@ const AddToCartModal = ({
               name="purchaseOption"
               label="Rent Now"
               value="rent"
-              checked={actionType === "rent"}
-              onChange={() => setActionType("rent")}
+              checked={actionType === 'rent'}
+              onChange={() => setActionType('rent')}
             />
 
-            {actionType === "rent" && (
+            {actionType === 'rent' && (
               <div className="mt-3 ml-7">
                 <Dropdown
                   placeholder="Select Rental Duration"
