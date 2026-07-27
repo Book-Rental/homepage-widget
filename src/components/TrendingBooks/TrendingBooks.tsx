@@ -21,9 +21,8 @@ const TrendingBooks = () => {
     isError,
     error,
   } = useQuery({
-    queryKey: bookKeys.all,
-    queryFn: fetchBooks,
-    select: (books) => books.filter((book) => book.isPopular),
+    queryKey: bookKeys.popular,
+    queryFn: () => fetchBooks({ isPopular: 'true' }),
     staleTime: 1000 * 60 * 5,
     retry: 2,
     refetchOnWindowFocus: false,
@@ -111,10 +110,15 @@ const TrendingBooks = () => {
                     disabled={isAddingToCart}
                     onClick={(e) => {
                       e.stopPropagation();
-                      handleAddToCartClick(book);
+                      if (addedType) {
+                        window.history.pushState({}, '', '/cart');
+                        window.dispatchEvent(new PopStateEvent('popstate'));
+                      } else {
+                        handleAddToCartClick(book);
+                      }
                     }}
                   >
-                    {isAddingToCart ? "Adding..." : addedType ? "Go to Cart" : "Add to Cart"}
+                    {isAddingToCart ? 'Adding...' : addedType ? 'Go to Cart' : 'Add to Cart'}
                   </Rb_Button>
                 </ProductCard>
               </div>
