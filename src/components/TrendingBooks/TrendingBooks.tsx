@@ -12,8 +12,8 @@ import { Book } from '../../types/category';
 const TrendingBooks = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedBook, setSelectedBook] = useState<Book | null>(null);
-  const [isAddingToCart, setIsAddingToCart] = useState(false);
-  const [addedType, setAddedType] = useState<'rent' | 'purchase' | null>(null);
+  const [addingBookId, setAddingBookId] = useState<string | null>(null);
+  const [addedBookIds, setAddedBookIds] = useState<Set<string>>(new Set());
 
   const {
     data: trendingBooks = [],
@@ -39,20 +39,19 @@ const TrendingBooks = () => {
   };
 
   const handleAddToCartClick = (book: Book) => {
-    if (addedType || isAddingToCart) {
-      return;
-    }
     setSelectedBook(book);
     setIsModalOpen(true);
   };
 
   const handleProceed = async (payload: AddToCartPayload) => {
-    setIsAddingToCart(true);
+    if (!selectedBook) return;
+    const bookId = selectedBook.id;
+    setAddingBookId(bookId);
 
     try {
       await addToCart(payload);
       showToast('Book added to rental cart.', 'success');
-      setAddedType('rent');
+      setAddedBookIds((prev) => new Set(prev).add(bookId));
     } catch (error) {
       showToast(
         error instanceof Error
@@ -61,7 +60,7 @@ const TrendingBooks = () => {
         'error'
       );
     } finally {
-      setIsAddingToCart(false);
+      setAddingBookId(null);
     }
   };
 
@@ -96,33 +95,38 @@ const TrendingBooks = () => {
         ) : (
 
           <div className="flex gap-10 overflow-x-auto overflow-y-hidden scroll-smooth [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            {trendingBooks.map((book) => (
-              <div key={book.id} onClick={() => handleBookClick(book.id)}>
-                <ProductCard
-                  imageUrl={book.coverUrl}
-                  title={book.title}
-                  author={book.author}
-                  rating={book.rating}
-                  priceText={`₹${book.rentalPrice}/day`}
-                >
-                  <Rb_Button
-                    className="primary"
-                    disabled={isAddingToCart}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      if (addedType) {
-                        window.history.pushState({}, '', '/cart');
-                        window.dispatchEvent(new PopStateEvent('popstate'));
-                      } else {
-                        handleAddToCartClick(book);
-                      }
-                    }}
+            {trendingBooks.map((book) => {
+              const isThisBookAdding = addingBookId === book.id;
+              const isThisBookAdded = addedBookIds.has(book.id);
+
+              return (
+                <div key={book.id} onClick={() => handleBookClick(book.id)}>
+                  <ProductCard
+                    imageUrl={book.coverUrl}
+                    title={book.title}
+                    author={book.author}
+                    rating={book.rating}
+                    priceText={`₹${book.rentalPrice}/day`}
                   >
-                    {isAddingToCart ? 'Adding...' : addedType ? 'Go to Cart' : 'Add to Cart'}
-                  </Rb_Button>
-                </ProductCard>
-              </div>
-            ))}
+                    <Rb_Button
+                      className="primary"
+                      disabled={isThisBookAdding}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        if (isThisBookAdded) {
+                          window.history.pushState({}, '', '/cart');
+                          window.dispatchEvent(new PopStateEvent('popstate'));
+                        } else {
+                          handleAddToCartClick(book);
+                        }
+                      }}
+                    >
+                      {isThisBookAdding ? 'Adding...' : isThisBookAdded ? 'View Cart' : 'Add to Cart'}
+                    </Rb_Button>
+                  </ProductCard>
+                </div>
+              );
+            })}
           </div>
         )}
       </div>
