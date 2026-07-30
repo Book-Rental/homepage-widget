@@ -100,7 +100,7 @@ const TrendingBooks = () => {
               const isThisBookAdded = addedBookIds.has(book.id);
 
               return (
-                <div key={book.id} onClick={() => handleBookClick(book.id)}>
+                <div key={book.id} className="w-64" onClick={() => handleBookClick(book.id)}>
                   <ProductCard
                     imageUrl={book.coverUrl}
                     title={book.title}
