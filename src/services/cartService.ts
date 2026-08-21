@@ -17,7 +17,7 @@ const getAnonymousId = (): string => {
 };
 
 export const addToCart = async (payload: AddToCartPayload) => {
-  const response = await fetch(`${API_URL}/api/cart/items`, {
+  const response = await fetch(`${API_URL}/cart/items`, {
     method: 'POST',
     credentials: 'include',
     headers: {

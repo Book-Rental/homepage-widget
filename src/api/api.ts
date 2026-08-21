@@ -1,4 +1,4 @@
-export const API_BASE_URL = 'https://be-book-rental.onrender.com/api';
+export const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 export const ENDPOINTS = {
   categories: `${API_BASE_URL}/Category`,
